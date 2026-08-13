@@ -3,11 +3,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const TayaboApp());
+  runApp(const HRMSManagementApp());
 }
 
-class TayaboApp extends StatelessWidget {
-  const TayaboApp({super.key});
+class HRMSManagementApp extends StatelessWidget {
+  const HRMSManagementApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -2248,3 +2248,7 @@ class AttendanceGaugePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
+
+
+
+/// Drop a comment for code !!! happy coding.....
