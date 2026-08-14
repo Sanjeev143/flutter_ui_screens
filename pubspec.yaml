@@ -49,6 +49,7 @@ dependencies:
   model_viewer_plus: ^1.8.0
   vector_math: ^2.1.4
   http: ^1.2.0
+  flutter_animate: ^4.5.0
 
 
 
