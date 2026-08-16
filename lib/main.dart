@@ -1,20 +1,24 @@
-import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:ui_screens_exmp/splash_screens/morphic_splash_screen.dart';
 
-import 'mobile_app/a2ui_genui.dart';
-import 'mobile_app/ai_plant_care_app.dart';
-import 'mobile_app/dragon_fire_app.dart';
-
-// void main() {
-//   runApp(
-//     const MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: FlyingDragonFireApp(),
-//     ),
-//   );
-// }
-
+import 'ar/audio_visualizer_withglsl.dart';
 
 void main() {
-  runApp(PlantDoctorApp());
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF070913),
+      ),
+      home: const MorphingAiSplashScreen(),
+    );
+  }
 }
