@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Mobile App Control & Preview Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+          --bg-main: #0B0F19;
+          --sidebar-bg: #111827;
+          --card-bg: #1F2937;
+          --border-color: rgba(255, 255, 255, 0.08);
+          --accent-blue: #3B82F6;
+          --accent-indigo: #6366F1;
+          --accent-green: #10B981;
+          --accent-amber: #F59E0B;
+          --text-main: #F9FAFB;
+          --text-muted: #9CA3AF;
+          --device-width: 375px;
+          --device-height: 780px;
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: 'Inter', sans-serif;
+        }
+
+        body {
+          background-color: var(--bg-main);
+          color: var(--text-main);
+          display: flex;
+          height: 100vh;
+          overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+          width: 260px;
+          background: var(--sidebar-bg);
+          border-right: 1px solid var(--border-color);
+          display: flex;
+          flex-direction: column;
+          flex-shrink: 0;
+          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .brand {
+          padding: 24px 20px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-logo {
+          width: 36px;
+          height: 36px;
+          background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 18px;
+        }
+
+        .nav-links {
+          list-style: none;
+          padding: 20px 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          flex: 1;
+        }
+
+        .nav-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 16px;
+          border-radius: 8px;
+          color: var(--text-muted);
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+          background: rgba(59, 130, 246, 0.12);
+          color: var(--text-main);
+        }
+
+        .nav-item.active {
+          color: var(--accent-blue);
+          font-weight: 600;
+        }
+
+        /* Main Container */
+        main {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          overflow-y: auto;
+        }
+
+        header {
+          height: 70px;
+          background: var(--sidebar-bg);
+          border-bottom: 1px solid var(--border-color);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 28px;
+          flex-shrink: 0;
+        }
+
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .btn {
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          color: var(--text-main);
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+          background: var(--accent-blue);
+          border-color: var(--accent-blue);
+        }
+
+        .btn-primary:hover {
+          background: #2563EB;
+        }
+
+        /* Work Area Grid */
+        .dashboard-body {
+          display: grid;
+          grid-template-columns: 1fr 420px;
+          gap: 24px;
+          padding: 24px;
+          flex: 1;
+        }
+
+        /* Mobile Device Simulator Stage */
+        .device-stage {
+          background: radial-gradient(circle at center, #1E293B, #0F172A);
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          padding: 40px 20px;
+        }
+
+        .stage-toolbar {
+          position: absolute;
+          top: 16px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(15, 23, 42, 0.75);
+          backdrop-filter: blur(12px);
+          padding: 6px 12px;
+          border-radius: 30px;
+          border: 1px solid var(--border-color);
+        }
+
+        /* Hardware Mockup Frames */
+        .device-mockup {
+          width: var(--device-width);
+          height: var(--device-height);
+          background: #000;
+          border: 12px solid #1E293B;
+          border-radius: 46px;
+          box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Dynamic Island / Notch */
+        .device-notch {
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 25px;
+          background: #000;
+          border-radius: 20px;
+          z-index: 100;
+          transition: all 0.2s ease;
+        }
+
+        /* App Preview Frame Body */
+        .app-screen {
+          flex: 1;
+          background: #FFFFFF;
+          color: #111827;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .app-screen.dark-mode {
+          background: #0D1117;
+          color: #F0F6FC;
+        }
+
+        .app-header {
+          padding: 44px 18px 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-mode .app-header {
+          border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .app-content {
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .mock-card {
+          background: rgba(0, 0, 0, 0.04);
+          border-radius: 12px;
+          padding: 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .dark-mode .mock-card {
+          background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Control Panels */
+        .control-deck {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .panel-card {
+          background: var(--sidebar-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 14px;
+          padding: 20px;
+        }
+
+        .panel-title {
+          font-size: 15px;
+          font-weight: 700;
+          margin-bottom: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .control-group {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 14px;
+        }
+
+        .control-label {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        select, input[type="text"] {
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          color: var(--text-main);
+          padding: 10px 14px;
+          border-radius: 8px;
+          font-size: 13px;
+          outline: none;
+          width: 100%;
+        }
+
+        /* Live Debug Console */
+        .console-log {
+          background: #050811;
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          padding: 12px;
+          height: 140px;
+          overflow-y: auto;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11.5px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .log-entry {
+          color: var(--text-muted);
+        }
+
+        .log-entry.info { color: var(--accent-blue); }
+        .log-entry.success { color: var(--accent-green); }
+        .log-entry.warn { color: var(--accent-amber); }
+
+        /* In-App Toast Simulation */
+        .simulated-notification {
+          position: absolute;
+          top: 50px;
+          left: 14px;
+          right: 14px;
+          background: rgba(17, 24, 39, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          color: white;
+          padding: 12px 14px;
+          border-radius: 12px;
+          font-size: 12px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(10px);
+          transform: translateY(-150%);
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          z-index: 200;
+        }
+
+        .simulated-notification.show {
+          transform: translateY(0);
+        }
+        .device-stage {
+  background: radial-gradient(circle at center, #1E293B, #0F172A);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Changed from center to prevent top overflow */
+  position: relative;
+  padding: 24px 20px;
+  gap: 20px; /* Clean separation between toolbar and phone */
+  overflow-y: auto;
+}
+
+.stage-toolbar {
+  position: static; /* Removed absolute positioning so it sits cleanly above the phone */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+/* Notch Stays at the top */
+.device-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 25px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 150;
+}
+
+/* Toast sits below the notch with proper spacing */
+.simulated-notification {
+  position: absolute;
+  top: 45px; /* Sits directly beneath the 10px + 25px notch */
+  left: 12px;
+  right: 12px;
+  background: rgba(17, 24, 39, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 11.5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  transform: translateY(-160%);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 120;
+}
+
+.simulated-notification.show {
+  transform: translateY(0);
+}
+
+/* App Header clears the notch cleanly when no toast is shown */
+.app-header {
+  padding: 48px 18px 14px; /* Sufficient top clearance for the notch */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.device-mockup {
+  width: var(--device-width);
+  height: var(--device-height);
+  max-height: calc(100vh - 220px); /* Keeps phone within viewport */
+  background: #000;
+  border: 12px solid #1E293B;
+  border-radius: 46px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1100px) {
+          .dashboard-body {
+            grid-template-columns: 1fr;
+          }
+          aside {
+            width: 72px;
+          }
+          aside .brand span, aside .nav-item span {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside>
+    <div class="brand">
+        <div class="brand-logo">N</div>
+        <span style="font-weight: 700; font-size: 16px;">Nexus Hub</span>
+    </div>
+    <ul class="nav-links">
+        <li class="nav-item active">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <span>Simulator</span>
+        </li>
+        <li class="nav-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <span>Remote Config</span>
+        </li>
+        <li class="nav-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span>Push Notifications</span>
+        </li>
+        <li class="nav-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span>Analytics Stream</span>
+        </li>
+    </ul>
+</aside>
+
+<!-- Main View Area -->
+<main>
+    <header>
+        <div>
+            <h1 style="font-size: 18px; font-weight: 700;">Mobile Workspace Preview</h1>
+            <p style="font-size: 12px; color: var(--text-muted);">Cross-Platform Runtime • Connected via WebSockets</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn" id="btn-reload" onclick="triggerAppReload()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                Hot Reload
+            </button>
+            <button class="btn btn-primary">Deploy OTA</button>
+        </div>
+    </header>
+
+    <div class="dashboard-body">
+        <!-- Device Stage -->
+        <section class="device-stage">
+            <div class="stage-toolbar">
+                <button class="btn" onclick="toggleOrientation()">🔄 Rotate</button>
+                <button class="btn" onclick="toggleAppTheme()">🌗 Switch Theme</button>
+            </div>
+
+            <div class="device-mockup" id="phone-frame">
+                <div class="device-notch" id="phone-notch"></div>
+
+                <!-- Mock In-App Toast -->
+                <div class="simulated-notification" id="mock-toast">
+                    <strong style="display:block; margin-bottom: 2px;">⚡ Remote Notification</strong>
+                    <span id="toast-body">New promotional campaign triggered from admin deck!</span>
+                </div>
+
+                <!-- Inside App Viewport -->
+                <div class="app-screen" id="app-viewport">
+                    <div class="app-header">
+                        <span style="font-weight: 700; font-size: 16px;">App Workspace</span>
+                        <span style="font-size: 12px; opacity: 0.6;">v2.4.0</span>
+                    </div>
+                    <div class="app-content">
+                        <div class="mock-card">
+                            <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 8px;"></div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 13px;">Real-Time Sync</div>
+                                <div style="font-size: 11px; opacity: 0.7;">State synchronized instantly</div>
+                            </div>
+                        </div>
+                        <div class="mock-card">
+                            <div style="width: 32px; height: 32px; background: var(--accent-green); border-radius: 8px;"></div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 13px;">Device Metrics</div>
+                                <div style="font-size: 11px; opacity: 0.7;">Latency: 18ms • FPS: 60</div>
+                            </div>
+                        </div>
+                        <div class="mock-card">
+                            <div style="width: 32px; height: 32px; background: var(--accent-indigo); border-radius: 8px;"></div>
+                            <div>
+                                <div style="font-weight: 600; font-size: 13px;">Cross-Platform Bridge</div>
+                                <div style="font-size: 11px; opacity: 0.7;">Active Platform: <strong id="platform-label">iOS</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Control Deck & Console -->
+        <section class="control-deck">
+            <!-- Target Configuration -->
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>Device Configuration</span>
+                    <span style="font-size: 11px; color: var(--accent-green);">● Connected</span>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Target Device Profile</label>
+                    <select id="device-select" onchange="changeDevicePreset(this.value)">
+                        <option value="iphone15">Apple iPhone 15 Pro (375 × 780)</option>
+                        <option value="pixel8">Google Pixel 8 (360 × 740)</option>
+                        <option value="ipad">Apple iPad Mini (540 × 720)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Network Emulation</label>
+                    <select onchange="logEvent('Network throttled to ' + this.value, 'warn')">
+                        <option>No Throttling (Direct WiFi)</option>
+                        <option>Fast 5G (50 Mbps / 5ms)</option>
+                        <option>Slow 3G (750 Kbps / 120ms)</option>
+                        <option>Offline Mode</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Push Dispatcher Simulation -->
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>Simulate Push Dispatch</span>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Notification Message</label>
+                    <input type="text" id="push-input" placeholder="e.g. Flash Sale Live: 50% Off!" value="🚀 Daily build v2.4.0 deployed successfully!" />
+                </div>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="sendMockPush()">
+                    Dispatch Push to Device
+                </button>
+            </div>
+
+            <!-- Debug Stream Console -->
+            <div class="panel-card">
+                <div class="panel-title">
+                    <span>Runtime Log Stream</span>
+                    <button class="btn" style="padding: 2px 8px; font-size: 11px;" onclick="clearLogs()">Clear</button>
+                </div>
+                <div class="console-log" id="console-output">
+                    <div class="log-entry info">[11:40:02] WebSocket connected to preview engine.</div>
+                    <div class="log-entry success">[11:40:03] Device frame initialized: iPhone 15 Pro.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script>
+    let isLandscape = false;
+    let isDarkMode = false;
+
+    function logEvent(message, type = 'info') {
+      const consoleOutput = document.getElementById('console-output');
+      const time = new Date().toTimeString().split(' ')[0];
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      entry.innerText = `[${time}] ${message}`;
+      consoleOutput.appendChild(entry);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    function clearLogs() {
+      document.getElementById('console-output').innerHTML = '';
+      logEvent('Log stream cleared.', 'info');
+    }
+
+    function changeDevicePreset(preset) {
+      const frame = document.getElementById('phone-frame');
+      const notch = document.getElementById('phone-notch');
+      const platformLabel = document.getElementById('platform-label');
+
+      if (preset === 'iphone15') {
+        frame.style.setProperty('--device-width', '375px');
+        frame.style.setProperty('--device-height', '780px');
+        frame.style.borderRadius = '46px';
+        notch.style.width = '100px';
+        notch.style.borderRadius = '20px';
+        platformLabel.innerText = 'iOS';
+        logEvent('Switched target profile to Apple iPhone 15 Pro', 'info');
+      } else if (preset === 'pixel8') {
+        frame.style.setProperty('--device-width', '360px');
+        frame.style.setProperty('--device-height', '740px');
+        frame.style.borderRadius = '32px';
+        notch.style.width = '14px';
+        notch.style.borderRadius = '50%';
+        platformLabel.innerText = 'Android';
+        logEvent('Switched target profile to Google Pixel 8', 'info');
+      } else if (preset === 'ipad') {
+        frame.style.setProperty('--device-width', '540px');
+        frame.style.setProperty('--device-height', '720px');
+        frame.style.borderRadius = '24px';
+        notch.style.width = '0px';
+        platformLabel.innerText = 'iPadOS';
+        logEvent('Switched target profile to iPad Mini', 'info');
+      }
+    }
+
+    function toggleOrientation() {
+      const frame = document.getElementById('phone-frame');
+      isLandscape = !isLandscape;
+      const currentWidth = getComputedStyle(frame).getPropertyValue('--device-width');
+      const currentHeight = getComputedStyle(frame).getPropertyValue('--device-height');
+
+      frame.style.setProperty('--device-width', currentHeight.trim());
+      frame.style.setProperty('--device-height', currentWidth.trim());
+      logEvent(`Orientation toggled: ${isLandscape ? 'Landscape' : 'Portrait'}`, 'info');
+    }
+
+    function toggleAppTheme() {
+      const app = document.getElementById('app-viewport');
+      isDarkMode = !isDarkMode;
+      app.classList.toggle('dark-mode', isDarkMode);
+      logEvent(`App theme set to ${isDarkMode ? 'Dark Mode' : 'Light Mode'}`, 'info');
+    }
+
+    function sendMockPush() {
+      const message = document.getElementById('push-input').value;
+      const toast = document.getElementById('mock-toast');
+      const toastBody = document.getElementById('toast-body');
+
+      toastBody.innerText = message || 'Empty notification payload';
+      toast.classList.add('show');
+      logEvent(`Push dispatched: "${toastBody.innerText}"`, 'success');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    function triggerAppReload() {
+      const app = document.getElementById('app-viewport');
+      app.style.opacity = '0.3';
+      logEvent('Triggering Hot Reload...', 'warn');
+      setTimeout(() => {
+        app.style.opacity = '1';
+        logEvent('App state reloaded in 240ms.', 'success');
+      }, 250);
+    }
+</script>
+</body>
+</html>
