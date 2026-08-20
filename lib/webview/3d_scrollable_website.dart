@@ -75,7 +75,9 @@ class _UniverseContinuousScrollScreenState
     _triggerPeriodicLightning();
 
     _scrollController.addListener(_onScroll);
-  }void _onScroll() {
+  }
+
+  void _onScroll() {
     setState(() {
       _scrollOffset = _scrollController.offset;
       if (!_isAutoScrolling) {
@@ -191,95 +193,97 @@ class _UniverseContinuousScrollScreenState
     final isMobile = size.width < 850;
 
     return Scaffold(
-      body: SafeArea(child: Stack(
-        children: [
-          // Background Gradient
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment(0.0, -0.3),
-                  radius: 1.5,
-                  colors: [
-                    Color(0xFF13092C),
-                    Color(0xFF070B1E),
-                    Color(0xFF020308),
-                  ],
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Background Gradient
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(0.0, -0.3),
+                    radius: 1.5,
+                    colors: [
+                      Color(0xFF13092C),
+                      Color(0xFF070B1E),
+                      Color(0xFF020308),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
 
-          // 3D Starfield
-          AnimatedBuilder(
-            animation: _universeTimeController,
-            builder: (context, _) {
-              return CustomPaint(
-                size: Size(size.width, size.height),
-                painter: Starfield3DPainter(
-                  time: _universeTimeController.value,
-                  scrollOffset: _scrollOffset,
-                ),
-              );
-            },
-          ),
-
-          // Lightning Bolts
-          AnimatedBuilder(
-            animation: _lightningController,
-            builder: (context, _) {
-              if (_lightningController.value == 0.0 ||
-                  _lightningController.value == 1.0) {
-                return const SizedBox.shrink();
-              }
-              return CustomPaint(
-                size: Size(size.width, size.height),
-                painter: CosmicLightningPainter(
-                  progress: _lightningController.value,
-                ),
-              );
-            },
-          ),
-
-          // Single Continuous Scroll Body
-          SingleChildScrollView(
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
-                  key: _homeKey,
-                  child: _buildHeroSection(size, isMobile),
-                ),
-                const SizedBox(height: 40),
-                Container(
-                  key: _universeKey,
-                  child: _buildUniverseSection(size, isMobile),
-                ),
-                const SizedBox(height: 60),
-                Container(
-                  key: _constellationsKey,
-                  child: _buildConstellationsSection(isMobile),
-                ),
-                const SizedBox(height: 60),
-                Container(
-                  key: _aboutKey,
-                  child: _buildAboutSection(isMobile),
-                ),
-                _buildFooterSection(),
-              ],
+            // 3D Starfield
+            AnimatedBuilder(
+              animation: _universeTimeController,
+              builder: (context, _) {
+                return CustomPaint(
+                  size: Size(size.width, size.height),
+                  painter: Starfield3DPainter(
+                    time: _universeTimeController.value,
+                    scrollOffset: _scrollOffset,
+                  ),
+                );
+              },
             ),
-          ),
 
-          // Fixed Top Navbar
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: _buildCosmicNavbar(isMobile, _activeTab),
-          ),
-        ],
-      ),)
+            // Lightning Bolts
+            AnimatedBuilder(
+              animation: _lightningController,
+              builder: (context, _) {
+                if (_lightningController.value == 0.0 ||
+                    _lightningController.value == 1.0) {
+                  return const SizedBox.shrink();
+                }
+                return CustomPaint(
+                  size: Size(size.width, size.height),
+                  painter: CosmicLightningPainter(
+                    progress: _lightningController.value,
+                  ),
+                );
+              },
+            ),
+
+            // Single Continuous Scroll Body
+            SingleChildScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Container(
+                    key: _homeKey,
+                    child: _buildHeroSection(size, isMobile),
+                  ),
+                  const SizedBox(height: 40),
+                  Container(
+                    key: _universeKey,
+                    child: _buildUniverseSection(size, isMobile),
+                  ),
+                  const SizedBox(height: 60),
+                  Container(
+                    key: _constellationsKey,
+                    child: _buildConstellationsSection(isMobile),
+                  ),
+                  const SizedBox(height: 60),
+                  Container(
+                    key: _aboutKey,
+                    child: _buildAboutSection(isMobile),
+                  ),
+                  _buildFooterSection(),
+                ],
+              ),
+            ),
+
+            // Fixed Top Navbar
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: _buildCosmicNavbar(isMobile, _activeTab),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -299,17 +303,22 @@ class _UniverseContinuousScrollScreenState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.05),
                   borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: const Color(0xFF00F0FF).withOpacity(0.4)),
+                  border: Border.all(
+                    color: const Color(0xFF00F0FF).withOpacity(0.4),
+                  ),
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0xFF00F0FF).withOpacity(0.2),
                       blurRadius: 20,
                       spreadRadius: 2,
-                    )
+                    ),
                   ],
                 ),
                 child: const Row(
@@ -376,7 +385,10 @@ class _UniverseContinuousScrollScreenState
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF00F0FF),
                   foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 18,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -386,7 +398,10 @@ class _UniverseContinuousScrollScreenState
                 icon: const Icon(Icons.rocket_launch_rounded, size: 20),
                 label: const Text(
                   "ENTER THE VALLEY",
-                  style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.5),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.5,
+                  ),
                 ),
               ),
             ],
@@ -422,7 +437,7 @@ class _UniverseContinuousScrollScreenState
           tag: "DIMENSION 01",
           title: "Quantum Core Matrix",
           description:
-          "The neural heart of Amazevalley where compute clusters oscillate at terahertz frequencies, powering generative engines across the multiverse.",
+              "The neural heart of Amazevalley where compute clusters oscillate at terahertz frequencies, powering generative engines across the multiverse.",
           gradient: const [Color(0xFF00F0FF), Color(0xFF7000FF)],
           icon: Icons.hub_rounded,
           isMobile: isMobile,
@@ -432,7 +447,7 @@ class _UniverseContinuousScrollScreenState
           tag: "DIMENSION 02",
           title: "Plasma Nebula Stream",
           description:
-          "High-energy plasma corridors facilitating instantaneous data routing and real-time interactive experiences without perceptual latency.",
+              "High-energy plasma corridors facilitating instantaneous data routing and real-time interactive experiences without perceptual latency.",
           gradient: const [Color(0xFFFF007A), Color(0xFF7E22CE)],
           icon: Icons.flash_on_rounded,
           isMobile: isMobile,
@@ -442,7 +457,7 @@ class _UniverseContinuousScrollScreenState
           tag: "DIMENSION 03",
           title: "Event Horizon Zenith",
           description:
-          "The edge of uncharted creative synthesis. Here, human ideas merge with autonomous agent intelligence to forge new realities.",
+              "The edge of uncharted creative synthesis. Here, human ideas merge with autonomous agent intelligence to forge new realities.",
           gradient: const [Color(0xFF38BDF8), Color(0xFF3B82F6)],
           icon: Icons.all_inclusive_rounded,
           isMobile: isMobile,
@@ -482,7 +497,10 @@ class _UniverseContinuousScrollScreenState
           decoration: BoxDecoration(
             color: const Color(0xFF0B1021).withOpacity(0.8),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: gradient.first.withOpacity(0.4), width: 1.5),
+            border: Border.all(
+              color: gradient.first.withOpacity(0.4),
+              width: 1.5,
+            ),
             boxShadow: [
               BoxShadow(
                 color: gradient.first.withOpacity(0.18),
@@ -501,7 +519,11 @@ class _UniverseContinuousScrollScreenState
                   gradient: LinearGradient(colors: gradient),
                   borderRadius: BorderRadius.circular(18),
                 ),
-                child: Icon(icon, color: Colors.white, size: isMobile ? 26 : 34),
+                child: Icon(
+                  icon,
+                  color: Colors.white,
+                  size: isMobile ? 26 : 34,
+                ),
               ),
               const SizedBox(width: 20),
               Expanded(
@@ -537,7 +559,7 @@ class _UniverseContinuousScrollScreenState
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -553,28 +575,32 @@ class _UniverseContinuousScrollScreenState
       {
         'title': 'Orion Neural Engine',
         'badge': 'AI & SYNTHESIS',
-        'desc': 'Deep autonomous intelligence generating dynamic visual algorithms and adaptive soundscapes.',
+        'desc':
+            'Deep autonomous intelligence generating dynamic visual algorithms and adaptive soundscapes.',
         'color': const Color(0xFF00F0FF),
         'icon': Icons.psychology_rounded,
       },
       {
         'title': 'Cygnus Spatial Lattice',
         'badge': 'SPATIAL COMPUTE',
-        'desc': '3D canvas projection architecture enabling multi-user holographic shared environments.',
+        'desc':
+            '3D canvas projection architecture enabling multi-user holographic shared environments.',
         'color': const Color(0xFFD946EF),
         'icon': Icons.view_in_ar_rounded,
       },
       {
         'title': 'Vela Hyper-Stream',
         'badge': 'QUANTUM CLOUD',
-        'desc': 'Sub-millisecond global fabric delivering planetary compute synchronizations effortlessly.',
+        'desc':
+            'Sub-millisecond global fabric delivering planetary compute synchronizations effortlessly.',
         'color': const Color(0xFF38BDF8),
         'icon': Icons.cloud_circle_rounded,
       },
       {
         'title': 'Phoenix Light Protocol',
         'badge': 'ZERO LATENCY',
-        'desc': 'Hardware-accelerated GLSL shader streams rendering 120 FPS visualizers simultaneously.',
+        'desc':
+            'Hardware-accelerated GLSL shader streams rendering 120 FPS visualizers simultaneously.',
         'color': const Color(0xFFF59E0B),
         'icon': Icons.bolt_rounded,
       },
@@ -629,7 +655,7 @@ class _UniverseContinuousScrollScreenState
                       color: color.withOpacity(0.12),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
-                    )
+                    ),
                   ],
                 ),
                 child: Column(
@@ -852,20 +878,20 @@ class _UniverseContinuousScrollScreenState
               itemBuilder: (context) => _menuItems
                   .map(
                     (item) => PopupMenuItem(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                      color: activeSection == item
-                          ? const Color(0xFF00F0FF)
-                          : Colors.white,
-                      fontWeight: activeSection == item
-                          ? FontWeight.bold
-                          : FontWeight.normal,
+                      value: item,
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                          color: activeSection == item
+                              ? const Color(0xFF00F0FF)
+                              : Colors.white,
+                          fontWeight: activeSection == item
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              )
+                  )
                   .toList(),
             ),
         ],
@@ -915,7 +941,10 @@ class _UniverseContinuousScrollScreenState
           const SizedBox(height: 20),
           Text(
             "© 2026 Amazevalley. All Rights Reserved across Galaxies.",
-            style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 13),
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.5),
+              fontSize: 13,
+            ),
           ),
         ],
       ),
@@ -944,19 +973,22 @@ class Starfield3DPainter extends CustomPainter {
 
       final double y =
           (baseY - (scrollOffset * depth * 0.4) + (time * 40 * depth)) %
-              size.height;
+          size.height;
       final double x =
           (baseX + math.sin(time * 2 * math.pi + i) * 4 * depth) % size.width;
 
       final double starSize = random.nextDouble() * 2.2 * depth + 0.5;
-      final double alpha =
-      (math.sin(time * 6.0 + i) * 0.35 + 0.65).clamp(0.1, 1.0);
+      final double alpha = (math.sin(time * 6.0 + i) * 0.35 + 0.65).clamp(
+        0.1,
+        1.0,
+      );
 
       final paint = Paint()
-        ..color = (i % 6 == 0
-            ? const Color(0xFF00F0FF)
-            : (i % 11 == 0 ? const Color(0xFFFF71D8) : Colors.white))
-            .withOpacity(alpha);
+        ..color =
+            (i % 6 == 0
+                    ? const Color(0xFF00F0FF)
+                    : (i % 11 == 0 ? const Color(0xFFFF71D8) : Colors.white))
+                .withOpacity(alpha);
 
       canvas.drawCircle(Offset(x, y), starSize, paint);
     }
