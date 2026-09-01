@@ -51,6 +51,7 @@ dependencies:
   http: ^1.2.0
   flutter_animate: ^4.5.0
   google_generative_ai: ^0.4.7
+  youtube_player_iframe: ^5.0.0
 
 
 
