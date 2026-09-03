@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Fidelity Financial Dashboard (1440x900 Design System)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-color: #f4f5f7;
+            --surface-white: #ffffff;
+            --accent-coral: #F25A3A;
+            --accent-coral-hover: #d94d30;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --text-muted: #94a3b8;
+            --border-light: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        /* 24px Border Radius Spec & Soft Shadows */
+        .card-ui {
+            background-color: var(--surface-white);
+            border-radius: 24px;
+            box-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-ui:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.07), 0 8px 12px -4px rgba(0, 0, 0, 0.03);
+        }
+
+        .inner-shadow {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+        }
+
+        /* Hide Scrollbar */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="h-full antialiased flex flex-col justify-between selection:bg-[#F25A3A] selection:text-white">
+
+<div class="w-full max-w-[1440px] mx-auto p-6 lg:p-10 flex flex-col gap-8">
+
+    <header class="card-ui px-8 py-5 flex items-center justify-between gap-6 backdrop-blur-md bg-white/90">
+
+        <div class="flex items-center gap-5">
+            <button class="w-12 h-12 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition-colors cursor-pointer group" title="Menu">
+                <i data-lucide="menu" class="w-5 h-5 group-hover:scale-105 transition-transform"></i>
+            </button>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-[#1e293b] text-white flex items-center justify-center font-extrabold text-lg tracking-wider shadow-md">
+                    F
+                </div>
+                <span class="font-bold text-lg tracking-tight text-slate-900 hidden sm:inline">FinFlow<span class="text-[#F25A3A]">.</span></span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 flex-1 max-w-xl justify-end">
+
+            <div class="relative hidden md:flex items-center flex-1 max-w-sm">
+                <i data-lucide="search" class="absolute left-4 w-4 h-4 text-slate-400"></i>
+                <input type="text" placeholder="Search accounts, transactions..." class="w-full bg-[#f4f5f7] border border-slate-200 text-xs rounded-full pl-11 pr-12 py-3 text-slate-700 focus:outline-none focus:border-[#F25A3A] transition-colors">
+                <span class="absolute right-4 text-[10px] font-semibold text-slate-400 bg-white px-1.5 py-0.5 rounded border border-slate-200">⌘K</span>
+            </div>
+
+            <button class="w-11 h-11 rounded-full bg-[#f4f5f7] hover:bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 transition-colors" title="Voice Search">
+                <i data-lucide="mic" class="w-4 h-4"></i>
+            </button>
+
+            <button class="w-11 h-11 rounded-full bg-[#f4f5f7] hover:bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 transition-colors" title="Add Widget">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+            </button>
+
+            <div class="h-6 w-[1px] bg-slate-200 mx-1"></div>
+
+            <div class="relative cursor-pointer group">
+                <div class="w-11 h-11 rounded-full ring-2 ring-[#F25A3A]/40 overflow-hidden bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 card-ui px-8 py-6 bg-gradient-to-r from-white via-white to-orange-50/30">
+
+        <div class="flex items-center gap-6">
+            <div class="relative w-16 h-16 rounded-full border-2 border-[#F25A3A]/30 flex flex-col items-center justify-center bg-orange-50/50 text-[#F25A3A] shadow-sm">
+                <span class="text-xl font-extrabold leading-none">28</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Aug</span>
+            </div>
+
+            <div>
+                <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                    Hey, Need help? <span class="inline-block animate-bounce">👋</span>
+                </h1>
+                <p class="text-sm font-light text-slate-500 mt-1">Your high-performance fiscal dashboard is fully synchronized and optimal.</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 w-full lg:w-auto justify-end">
+            <button class="p-3.5 rounded-full bg-[#f4f5f7] hover:bg-slate-100 border border-slate-200 text-slate-600 transition-colors flex items-center justify-center" title="Fiscal Calendar">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+            </button>
+            <button class="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-[#F25A3A] hover:bg-[#d94d30] text-white font-semibold text-sm px-8 py-4 rounded-full transition-all shadow-lg shadow-[#F25A3A]/25 hover:scale-105">
+                <span>Show my Tasks</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </section>
+
+
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="card-ui p-7 flex flex-col justify-between relative overflow-hidden group col-span-1">
+            <div class="absolute -right-10 -top-10 w-36 h-36 bg-[#F25A3A]/10 rounded-full blur-2xl group-hover:bg-[#F25A3A]/20 transition-all"></div>
+
+            <div>
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xs font-bold tracking-widest uppercase text-slate-400">Virtual Linked Card</span>
+                    <div class="px-2.5 py-1 bg-slate-900 rounded-md flex items-center justify-center text-white text-[10px] font-bold tracking-wider">
+                        VISA
+                    </div>
+                </div>
+
+                <div class="space-y-1 mb-5">
+                    <p class="text-xs font-light text-slate-400">Linked Vault Account (#4892)</p>
+                    <h3 class="text-3xl font-extrabold tracking-tight text-slate-900">$24,850.<span class="text-lg font-medium text-slate-400">50</span></h3>
+                </div>
+
+                <div class="bg-[#f4f5f7] p-3.5 rounded-2xl border border-slate-200 mb-5 inner-shadow flex items-center justify-between">
+                    <span class="font-mono text-xs tracking-widest text-slate-600 font-semibold">•••• •••• •••• 4892</span>
+                    <i data-lucide="eye" class="w-4 h-4 text-slate-400 cursor-pointer hover:text-slate-600 transition-colors"></i>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-500 px-1 mb-2">
+                    <span>Monthly Maint. Fee</span>
+                    <span class="font-bold text-slate-800">$12.00</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button class="bg-[#F25A3A] hover:bg-[#d94d30] text-white font-semibold py-3 px-4 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F25A3A]/20 text-xs">
+                    <i data-lucide="arrow-down-left" class="w-4 h-4"></i>
+                    <span>Receive</span>
+                </button>
+                <button class="bg-[#f4f5f7] hover:bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-2xl transition-all flex items-center justify-center gap-2 text-xs border border-slate-200">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    <span>Send</span>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="grid grid-rows-2 gap-6 col-span-1">
+            <div class="card-ui p-6 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-light text-slate-400 uppercase tracking-wider">Total Income</span>
+                            <h4 class="text-lg font-bold text-slate-800">$12,450.<span class="text-xs font-normal text-slate-400">00</span></h4>
+                        </div>
+                    </div>
+                    <select class="bg-[#f4f5f7] border border-slate-200 text-slate-600 text-[11px] rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer font-medium">
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        <option>Yearly</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card-ui p-6 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-orange-50 text-[#F25A3A] flex items-center justify-center">
+                            <i data-lucide="trending-down" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-light text-slate-400 uppercase tracking-wider">Total Expenses</span>
+                            <h4 class="text-lg font-bold text-slate-800">$4,120.<span class="text-xs font-normal text-slate-400">30</span></h4>
+                        </div>
+                    </div>
+                    <select class="bg-[#f4f5f7] border border-slate-200 text-slate-600 text-[11px] rounded-xl px-2.5 py-1.5 focus:outline-none cursor-pointer font-medium">
+                        <option>Weekly</option>
+                        <option>Monthly</option>
+                        <option>Yearly</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-ui p-7 flex flex-col justify-between col-span-1">
+            <div class="flex justify-between items-center mb-2">
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Annual Profits</h4>
+                    <p class="text-[11px] font-light text-slate-400">Concentric target analysis</p>
+                </div>
+                <i data-lucide="pie-chart" class="w-4 h-4 text-[#F25A3A]"></i>
+            </div>
+
+            <div class="relative flex items-center justify-center py-2">
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full border-4 border-dashed border-[#F25A3A]/25 animate-spin" style="animation-duration: 40s;"></div>
+                    <div class="absolute inset-3 rounded-full border-4 border-[#F25A3A]/60 inner-shadow"></div>
+                    <div class="absolute inset-7 rounded-full bg-[#F25A3A] flex flex-col items-center justify-center text-white shadow-md shadow-[#F25A3A]/30">
+                        <span class="text-[10px] font-light opacity-80 uppercase">Net Yield</span>
+                        <span class="text-base font-extrabold">+84.2%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100 text-center">
+                <div class="bg-[#f4f5f7] p-2 rounded-xl">
+                    <span class="block text-[9px] text-slate-400 uppercase font-semibold">Q3 Return</span>
+                    <span class="text-xs font-bold text-slate-700">$18,400</span>
+                </div>
+                <div class="bg-[#F25A3A]/10 p-2 rounded-xl">
+                    <span class="block text-[9px] text-[#F25A3A] uppercase font-semibold">Projected</span>
+                    <span class="text-xs font-bold text-[#F25A3A]">$32,100</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-ui p-7 flex flex-col justify-between col-span-1">
+            <div class="flex justify-between items-center mb-2">
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">Portfolio Growth</h4>
+                    <p class="text-[11px] font-light text-slate-400">Radial gauge metric</p>
+                </div>
+                <span class="text-[10px] font-bold bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full">Optimized</span>
+            </div>
+
+            <div class="relative flex items-center justify-center py-2">
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                        <path class="text-slate-100" stroke-width="4" stroke="currentColor" fill="none"
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="text-[#F25A3A]" stroke-dasharray="36, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none"
+                              d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    </svg>
+                    <div class="absolute flex flex-col items-center justify-center text-center">
+                        <span class="text-2xl font-extrabold text-slate-900">36%</span>
+                        <span class="text-[9px] font-light text-slate-400 uppercase tracking-wider">Velocity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-3 border-t border-slate-100 text-[11px]">
+                <span class="text-slate-400 font-light">Target threshold</span>
+                <span class="font-bold text-slate-700">Stable Index</span>
+            </div>
+        </div>
+
+    </main>
+
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card-ui p-7 flex flex-col justify-between col-span-1">
+            <div class="flex justify-between items-center mb-2">
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm">S&P 500 Index</h4>
+                    <p class="text-[11px] font-light text-slate-400">Timeline sparkline trend</p>
+                </div>
+                <span class="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">+4.2%</span>
+            </div>
+
+            <div class="space-y-1 mb-3">
+                <span class="text-2xl font-extrabold text-slate-900 tracking-tight">5,482.10</span>
+            </div>
+
+            <div class="relative h-24 w-full my-1">
+                <svg class="w-full h-full overflow-visible" viewBox="0 0 300 100" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="coralGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#F25A3A" stop-opacity="0.25"/>
+                            <stop offset="100%" stop-color="#F25A3A" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,85 Q60,55 120,60 T240,25 T300,10 L300,100 L0,100 Z" fill="url(#coralGrad)"/>
+                    <path d="M0,85 Q60,55 120,60 T240,25 T300,10" fill="none" stroke="#F25A3A" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="240" cy="25" r="5" fill="#ffffff" stroke="#F25A3A" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <div class="flex justify-between items-center pt-3 border-t border-slate-100 text-[11px] text-slate-400 font-light">
+                <span>Q1 Live</span>
+                <span>Q2 Live</span>
+                <span>Q3 Live</span>
+                <span class="font-semibold text-slate-700">Q4 Target</span>
+            </div>
+        </div>
+
+
+        <div class="card-ui p-7 flex flex-col justify-between col-span-1">
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h4 class="font-bold text-slate-800 text-sm">Activity Manager</h4>
+                    <span class="text-xs text-slate-400 font-medium">12 active</span>
+                </div>
+
+                <div class="relative mb-3">
+                    <i data-lucide="search" class="absolute left-3 top-2.5 w-3.5 h-3.5 text-slate-400"></i>
+                    <input type="text" placeholder="Filter ledger..." class="w-full bg-[#f4f5f7] border border-slate-200 text-xs rounded-xl pl-9 pr-3 py-2 text-slate-700 focus:outline-none focus:border-[#F25A3A]">
+                </div>
+
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                    <button class="bg-[#F25A3A] text-white text-[11px] font-medium px-3 py-1 rounded-full shrink-0 shadow-sm shadow-[#F25A3A]/25">All</button>
+                    <button class="bg-[#f4f5f7] hover:bg-slate-200 text-slate-600 text-[11px] font-medium px-3 py-1 rounded-full shrink-0 transition-colors">Incoming</button>
+                    <button class="bg-[#f4f5f7] hover:bg-slate-200 text-slate-600 text-[11px] font-medium px-3 py-1 rounded-full shrink-0 transition-colors">Invoices</button>
+                </div>
+
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between p-2 hover:bg-[#f4f5f7] rounded-xl transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                <i data-lucide="arrow-down-left" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-xs font-bold text-slate-800">Enterprise Payout</h6>
+                                <p class="text-[9px] text-slate-400">Today, 2:45 PM</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-600">+$1,250</span>
+                    </div>
+
+                    <div class="flex items-center justify-between p-2 hover:bg-[#f4f5f7] rounded-xl transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-7 h-7 rounded-lg bg-orange-50 text-[#F25A3A] flex items-center justify-center">
+                                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-xs font-bold text-slate-800">Cloud Hosting API</h6>
+                                <p class="text-[9px] text-slate-400">Yesterday</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-slate-800">-$299</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 text-center">
+                <a href="#" class="text-[11px] font-semibold text-[#F25A3A] hover:underline">Access Complete Ledger →</a>
+            </div>
+        </div>
+
+
+        <div class="card-ui p-7 flex flex-col justify-between col-span-1">
+            <div class="flex items-start justify-between mb-4">
+                <div class="w-11 h-11 rounded-2xl bg-orange-50 text-[#F25A3A] flex items-center justify-center shadow-sm">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[10px] font-bold bg-orange-100 text-[#F25A3A] px-2.5 py-1 rounded-full uppercase tracking-wider">Action Req.</span>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-slate-800 text-base mb-1">Wallet Verification</h4>
+                <p class="text-xs font-light text-slate-500 leading-relaxed mb-5">
+                    Secure secondary asset vault with biometric 2FA protocols to enable instant cross-border wire payouts.
+                </p>
+            </div>
+
+            <button class="w-full bg-[#F25A3A] hover:bg-[#d94d30] text-white font-semibold py-3.5 px-4 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-md shadow-[#F25A3A]/20 text-xs">
+                <span>Enable Vault Protection</span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+    </section>
+
+    <footer class="card-ui px-8 py-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4 mt-2">
+        <div>
+            <span class="font-bold text-slate-700">Deliverable Spec:</span> 1440×900 Desktop UI • 24px Border Radius • Soft Neumorphic Shadows • #F25A3A Warm Orange Token
+        </div>
+        <div class="flex items-center gap-4 font-semibold text-slate-600">
+            <span class="hover:text-[#F25A3A] cursor-pointer">Export SVG Icons</span>
+            <span>•</span>
+            <span class="hover:text-[#F25A3A] cursor-pointer">Symbols & Tokens</span>
+            <span>•</span>
+            <span class="hover:text-[#F25A3A] cursor-pointer">Interaction Specs</span>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>

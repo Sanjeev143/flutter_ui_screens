@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_screens_exmp/webview/background_animation_app.dart';
 
+import 'dashboards/finance/finance_dashboard.dart';
 import 'dashboards/finance/fintech_trading_app.dart';
 import 'dashboards/finance/relatel_finance_dashboard.dart';
 import 'mobile_app/notes_app/notes_app.dart';
@@ -13,8 +14,12 @@ import 'mobile_app/pagination_in_app/pagination_style.dart';
 // }
 
 void main() {
-  runApp(const FintechTradingApp());
+  runApp(const FinFlowApp());
 }
+
+// void main() {
+//   runApp(const FintechTradingApp());
+// }
 
 // void main() {
 //   runApp(const RelatelDashboardApp());
