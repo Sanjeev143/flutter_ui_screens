@@ -1,7 +1,5 @@
 # Amazevalley All Tutorial at single place
 
-Here is the list of your long-form videos from **Amazevalley**:
-
 Please find below the direct watch links of complete tutorial videos on the **Amazevalley** YouTube channel for your reference:
 
 1.  [Flutter Hotel Booking App with Glassmorphism UI & Multi-Step Reservation Flow || Amazevalley](https://www.youtube.com/watch?v=VRhptwG5FOA)
