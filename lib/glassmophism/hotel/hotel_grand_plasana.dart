@@ -46,6 +46,8 @@ class HotelGrandPalsanaApp extends StatelessWidget {
   }
 }
 
+
+
 // Model for Room / Hotel Data
 class RoomItem {
   final String title;
@@ -128,8 +130,8 @@ class GlassContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0.25),
-            Colors.white.withOpacity(0.05),
+            Colors.white.withValues(alpha: 0.25),
+            Colors.white.withValues(alpha: 0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -138,7 +140,7 @@ class GlassContainer extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(1.5),
         decoration: BoxDecoration(
-          color: const Color(0xFF1E293B).withOpacity(0.65),
+          color: const Color(0xFF1E293B).withValues(alpha: 0.65),
           borderRadius: BorderRadius.circular(borderRadius - 1),
         ),
         child: ClipRRect(
@@ -194,7 +196,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.black.withOpacity(0.7), Colors.black.withOpacity(0.4), Colors.black.withOpacity(0.8)],
+                colors: [Colors.black.withValues(alpha: 0.7), Colors.black.withValues(alpha: 0.4), Colors.black.withValues(alpha: 0.8)],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -320,6 +322,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
     );
   }
 
+  /// Nav Item UI
   Widget _buildNavItem(int index, IconData icon, String label) {
     bool isSelected = _currentIndex == index;
     return GestureDetector(
@@ -443,6 +446,7 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                /// No Call on click so far but you can as per requirement
                 _buildCategoryItem(context, Icons.meeting_room, 'Rooms', () {}),
                 _buildCategoryItem(context, Icons.restaurant, 'Dining', () {}),
                 _buildCategoryItem(context, Icons.room_service, 'AC Hall', () {}),
@@ -456,7 +460,8 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            ...allRoomsData.take(4).map((room) => Padding(
+            ...allRoomsData.take(4).map((room) => Padding( // Only 4 Item
+              // displaying
               padding: const EdgeInsets.only(bottom: 12.0),
               child: _buildHomeRoomCard(context, room),
             )),
