@@ -1,16 +1,56 @@
-# ui_screens_exmp
+# Amazevalley All Tutorial at single place
 
-A new Flutter project.
+Here is the list of your long-form videos from **Amazevalley**:
 
-## Getting Started
+Please find below the direct watch links of complete tutorial videos on the **Amazevalley** YouTube channel for your reference:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1.  [Flutter Hotel Booking App with Glassmorphism UI & Multi-Step Reservation Flow || Amazevalley](https://www.youtube.com/watch?v=VRhptwG5FOA)
+2.  [Luxury Coffee Shop UI In Flutter with Glass UI Effects](https://www.youtube.com/watch?v=H6gU7by62DI)
+3.  [How to Build an Advanced Glass UI App in Flutter (Full Project Tutorial)](https://www.youtube.com/watch?v=azy508bJD6w)
+4.  [Flutter UI Tutorial: Fitness App (Free Source Code)](https://www.youtube.com/watch?v=0bsbX-trQHw)
+5.  [Flutter Responsive HR Dashboard UI Tutorial | Employee Management | Time Tracking | Onboarding UI](https://www.youtube.com/watch?v=88rAiLth9bU)
+6.  [Flutter vs HTML: Can Flutter Actually Replace Web Development?](https://www.youtube.com/watch?v=RKGLN8JS6fw)
+7.  [Fintech Trader Dashboard UI in Flutter | Modern Trading App UI Design || Amazevalley](https://www.youtube.com/watch?v=P9g-DP1_-Qo)
+8.  [Crypto & Finance Dashboard Tutorial In Flutter | Glassmorphism UI & Responsive Layout](https://www.youtube.com/watch?v=rEDfLbGOj2w)
+9.  [Build a Stunning Evernote UI in Flutter with Glassmorphism & Dynamic Navigation\! 📱 Amazevalley](https://www.youtube.com/watch?v=hYbOcT-LjkQ)
+10. [$10,000 Smart Home Design in Flutter 🔥 | AI-Powered Smart Home UI & Mobile App || Amazevalley](https://www.youtube.com/watch?v=5vSHs2JT0oI)
+11. [Smart Home App UI in Flutter | Home Automation Dashboard Design || Amazevalley || PART - 01](https://www.youtube.com/watch?v=nuG1VYwPB94)
+12. [SaaS HR Recruitment Dashboard in Flutter || Professional Dashboard || Amazevalley](https://www.youtube.com/watch?v=rxGcLPb1uA8)
+13. [AI Assistant App Tutorial in Flutter || Liquid Glassmorphism || With Audio Visualizers | Amazevalley](https://www.youtube.com/watch?v=2jkTgEocE08)
+14. [Modern Car Dashboard UI | Futuristic Flutter UI 2026 || Amazevalley](https://www.youtube.com/watch?v=kyVmhU_LryQ)
+15. [Luxury Lodge App UI in Flutter | Modern Travel App Design || Amazevalley](https://www.youtube.com/watch?v=XRJktIVjaDY)
+16. [Flutter Build Failed? 10 Common Errors & Solutions || Amazevalley](https://www.youtube.com/watch?v=nzrtJed09Gc)
+17. [Build an AI Dashboard in Flutter for Policy Platforms || Policy Platform |\#Amazevalley \#aidashboard](https://www.youtube.com/watch?v=q99CgxEuHLc)
+18. [Flutter 3D Parallax Scrolling Tutorial: Shaders, Starfields & Perspective Transforms || Amazevalley](https://www.youtube.com/watch?v=Etfg4dm71Sg)
+19. [Flutter Dashboard UI | Modern Responsive Admin Dashboard (Mobile, Web & Desktop)| \#Amazevalley](https://www.youtube.com/watch?v=E5w_iPpTSaE)
+20. [Flutter Audio Visualizer | Real-Time Sound Visualization with GLSL Shaders \#flutter \#glsl \#audio](https://www.youtube.com/watch?v=sgyljlFxCgk)
+21. [AI Chat App in Flutter with Glassmorphism \#Amazevalley \#growth \#flutter \#aichatbot \#ai \#aiapp](https://www.youtube.com/watch?v=KdedF5PoY6E)
+22. [Flutter App UI Design | AI Plant Doctor | AR Plant Scanner | Glassmorphism Plant Care App in Flutter](https://www.youtube.com/watch?v=XRkx2RudhqU)
+23. [Job Finder App UI/UX Design | Modern Flutter Mobile App | Complete App Walkthrough || Amazevalley](https://www.youtube.com/watch?v=AVPgK4obAy8)
+24. [Build an Enterprise HRMS App in Flutter \#socialmediagrowth \#hrms \#hrmssoftware \#hr \#growth \#trending](https://www.youtube.com/watch?v=evGPemCX3eI)
+25. [Advanced Flutter UI: Generative Art & Mathematical Fractals for SaaS \#growth \#socialmediagrowth](https://www.youtube.com/watch?v=lIIyu1eBMlA)
+26. [Vendor Dashboard in Flutter \#BharatAIResearchCentre \#FacebookGrowth \#SocialMediaGrowth](https://www.youtube.com/watch?v=V5aFVzTtNvM)
+27. [8th Pay Commission Calculator \#BharatAIResearchCentre \#FacebookGrowth \#socialmediagrowth \#growth](https://www.youtube.com/watch?v=mYj76Sp_i0w)
+28. [E-Commerce Shopping Admin Dashboard UI | Flutter | Modern Admin Panel \#growth \#socialmediagrowth](https://www.youtube.com/watch?v=ZZU9Z9cpYHI)
+29. [Food Vendor Admin Dashboard in Flutter (Web & Desktop)Amazevalley \#growth \#socialmediagrowth](https://www.youtube.com/watch?v=P1Q63G9gs2g)
+30. [Build This Insane App UI in Flutter ⚔️ Glassmorphism + Slivers + Sorting](https://www.youtube.com/watch?v=UTOIs6mnYuY)
+31. [Build a 3D Liquid Tornado Animation in Flutter | Amazevalley](https://www.youtube.com/watch?v=LOzWfDOlj-A)
+32. [3D Underwater Tunnel in Flutter | CustomPainter & Animation \#growonyoutube \#socialmediagrowth](https://www.youtube.com/watch?v=F1I1OPRmZlU)
+33. [Images List View In Flutter | \#growninstagram \#socialmediagrowth \#socialmediamarketing](https://www.youtube.com/watch?v=Ut8Ds88eaps)
+34. [Next-Gen Fintech UI in Flutter 💰 | Modern Banking & Finance App Design](https://www.youtube.com/watch?v=FdZ0JNrg19E)
+35. [Liquid Glass Music App in Flutter || \#socialmediagrowth \#growth \#growthmindset \#growninstagram](https://www.youtube.com/watch?v=KGeVkf_1nkw)
+36. [Futuristic SaaS Analytics Dashboard 📊 | Leads & Conversion UI in Flutter](https://www.youtube.com/watch?v=5B3Mu364F3s)
+37. [Flutter Modern Glassmorphic Analytics Dashboard \#socialmediagrowth \#socialmedia \#growth \#dashboard](https://www.youtube.com/watch?v=dfZHRK39HCc)
+38. [Glassmorphism UI in Flutter: Animated Login & Dashboard Tutorial | Amazevalley](https://www.youtube.com/watch?v=lnD3d3erUlo)
+39. [Modern School Dashboard in Flutter | Amazevalley](https://www.youtube.com/watch?v=Bf0048FiCeI)
+40. [Relaxing Space Meditation UI in Flutter 🧘 | Cosmic Animation & Effects](https://www.youtube.com/watch?v=3rwWv_Vn_P0)
+41. [Flutter CustomPainter Galaxy Animation | Thunder, Clouds & Twinkling Stars | No Assets | Flutter UI](https://www.youtube.com/watch?v=SZxndJP0RFc)
+42. [I Created a Realistic Galaxy in Flutter — No Assets || Amazevalley](https://www.youtube.com/watch?v=4HCRuTpMN0c)
+43. [Flutter CustomPainter + AnimationController = AI Neural Network Animation | Amazevalley](https://www.youtube.com/watch?v=lB7dPV1fqzc)
+44. [HR Management Responsive Dashboard | Flutter UI/UX | Amazevalley](https://www.youtube.com/watch?v=8EokrruiKbw)
+45. [Bubble Animation | Flutter | Amazevalley](https://www.youtube.com/watch?v=ubQ1bS5CWzA)
+46. [Sales Dashboard UI | Modern Business Analytics Dashboard | Flutter Dashboard Design | Amazevalley](https://www.youtube.com/watch?v=EscuWJ2MBT8)
+47. [Healthcare Dashboard for Clinic Management | Flutter UI/UX | Amazevalley](https://www.youtube.com/watch?v=pmRx5UqsSqw)
+48. [Healthcare Dashboard UI Design | Modern Hospital Management Dashboard | Flutter UI/UX | Amazevalley](https://www.youtube.com/watch?v=DEEff_vNbhQ)
+49. [Next-Gen EV Dashboard UI in Flutter ⚡ | Futuristic Car Interface](https://www.youtube.com/watch?v=pH_cijR2n5s)
+50. [Futuristic Sales Dashboard in Flutter 📈 | Analytics UI/UX Concept](https://www.youtube.com/watch?v=oOgAeIVHfms)
